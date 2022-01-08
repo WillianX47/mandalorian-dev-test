@@ -14,7 +14,7 @@ import java.util.List;
 
 import io.smallrye.mutiny.Uni;
 
-@Path("/increments")
+@Path("/task")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TaskResource {
