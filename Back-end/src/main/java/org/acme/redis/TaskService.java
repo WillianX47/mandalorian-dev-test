@@ -35,10 +35,6 @@ class TaskService {
         redisClient.set(Arrays.asList(key, texto));
     }
 
-    void increment(String key, Integer incrementBy) {
-        redisClient.incrby(key, incrementBy.toString());
-    }
-
     Uni<List<String>> keys() {
         return reactiveRedisClient
                 .keys("*")
