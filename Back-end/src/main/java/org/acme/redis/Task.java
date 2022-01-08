@@ -1,14 +1,14 @@
 package org.acme.redis;
 
-public class Increment {
+public class Task {
     public String key;
-    public int value;
+    public String texto;
 
-    public Increment(String key, int value) {
+    public Task(String key, String texto) {
         this.key = key;
-        this.value = value;
+        this.texto = texto;
     }
 
-    public Increment() {
+    public Task() {
     }
 }

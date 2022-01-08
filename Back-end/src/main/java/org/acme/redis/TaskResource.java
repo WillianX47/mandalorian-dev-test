@@ -17,10 +17,10 @@ import io.smallrye.mutiny.Uni;
 @Path("/increments")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class IncrementResource {
+public class TaskResource {
 
     @Inject
-    IncrementService service;
+    TaskService service;
 
     @GET
     public Uni<List<String>> keys() {
@@ -28,15 +28,15 @@ public class IncrementResource {
     }
 
     @POST
-    public Increment create(Increment increment) {
-        service.set(increment.key, increment.value);
-        return increment;
+    public Task create(Task task) {
+        service.set(task.key, task.texto);
+        return task;
     }
 
     @GET
     @Path("/{key}")
-    public Increment get(@PathParam("key") String key) {
-        return new Increment(key, Integer.valueOf(service.get(key)));
+    public Task get(@PathParam("key") String key) {
+        return new Task(key, String.valueOf(service.get(key)));
     }
 
     @PUT

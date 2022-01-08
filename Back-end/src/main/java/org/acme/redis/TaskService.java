@@ -14,7 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-class IncrementService {
+class TaskService {
 
     @Inject
     RedisClient redisClient;
@@ -31,8 +31,8 @@ class IncrementService {
         return redisClient.get(key).toString();
     }
 
-    void set(String key, Integer value) {
-        redisClient.set(Arrays.asList(key, value.toString()));
+    void set(String key, String texto) {
+        redisClient.set(Arrays.asList(key, texto));
     }
 
     void increment(String key, Integer incrementBy) {
