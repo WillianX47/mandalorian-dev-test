@@ -13,28 +13,36 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+//Classe TaskService, regra de negócio da aplicação
 @Singleton
 class TaskService {
 
+    //Injeta o RedisClient
     @Inject
     RedisClient redisClient;
 
+    //Injeta o ReactiveRedisClient
     @Inject
     ReactiveRedisClient reactiveRedisClient;
 
+    //Função que recebe uma key e quando encontrada, deleta a task
     Uni<Void> del(String key) {
         return reactiveRedisClient.del(Arrays.asList(key))
                 .map(response -> null);
     }
 
+    //Função que recebe uma key e retorna com o valor dela
     String get(String key) {
         return redisClient.get(key).toString();
     }
 
+    //Função que recebe uma key e um texto, salva no Redis a task
     void set(String key, String texto) {
         redisClient.set(Arrays.asList(key, texto));
     }
 
+    //Função que busca todas as keys no banco de dados e retorna para quem a chamou
+    //uma lista de keys
     Uni<List<String>> keys() {
         return reactiveRedisClient
                 .keys("*")
