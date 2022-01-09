@@ -22,13 +22,15 @@ export class TaskComponent implements OnInit {
 
   getAllKeys(){
     this.back.getAllKeys().subscribe((resp: BackKeys[]) => {
-      this.allKeys = resp;
-      console.log(this.allKeys)
+      this.allKeys = resp
+      for(var i = 0; i < resp.length; i++){
+        this.getAllValue(this.allKeys[i].toString())
+      }
     });
   }
 
-  getAllValue(){
-      this.back.getAllValue("Tarefa").subscribe((resp: Back)=> {
+  getAllValue(key: String){
+      this.back.getAllValue(key).subscribe((resp: Back)=> {
         this.value = resp;
         console.log(this.value)
     });
