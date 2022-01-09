@@ -33,6 +33,7 @@ public class TaskResource {
 
     //Recebe um body e salva no Redis
     @POST
+    @Path("/add")
     public Task create(Task task) {
         service.set(task.key, task.texto);
         return task;
