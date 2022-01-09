@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300);
+
+body {
+  margin:0;
+  font-family: 'Open Sans', sans-serif;
+  background: #eee;
+  font-size: 16px;
+  line-height: 1;
+  padding: 20px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 140%;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.postit4 {
+	position:relative;
+	padding: 25px;
+	display: inline-block;
+	-webkit-box-shadow: 0 8px 10px -7px #999;
+	-moz-box-shadow: 0 8px 10px -7px #999;
+	box-shadow: 0 8px 10px -7px #999;
+	-webkit-border-bottom-right-radius: 60px 10px;
+	-moz-border-radius-bottomright: 60px 10px;
+	border-bottom-right-radius: 60px 10px;
+	margin: 0 0 20px 20px;
+}
+
+.postit4 h3 {
+	border-top-width: 2px;
+	border-top-style: dotted;
+	margin: 0 -25px;
+	padding: 15px 25px 0 25px;
+}
+
+.postit4 {background:#FFFFA5;}
+.postit4 h3 {background:#FFFFA5;}
+
+.postit4 {
+  -webkit-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -moz-transform:rotate(-3deg);
+}
+
+.postit4:hover, .postit4:focus {
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  position:relative;
+  z-index:5;
+}
+

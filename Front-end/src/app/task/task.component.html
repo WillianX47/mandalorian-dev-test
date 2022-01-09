@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row bg-dark">
+    <div class="col-md-12 vh-100">
+      <div *ngFor="let todos of value" class="postit4">
+        <h3>{{todos.key}}</h3>
+        <div contenteditable><p>
+            {{todos.texto}}
+        </p></div>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+

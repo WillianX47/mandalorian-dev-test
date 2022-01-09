@@ -10,8 +10,12 @@ import { BackService } from '../service/back.service';
 })
 export class TaskComponent implements OnInit {
 
+  exemplo: Back = {
+    key: "OK",
+    texto: "OK"
+  }
   allKeys: BackKeys[];
-  value: Back;
+  value: Back[] = [this.exemplo];
 
   constructor(private back: BackService) { }
 
@@ -23,17 +27,19 @@ export class TaskComponent implements OnInit {
   getAllKeys(){
     this.back.getAllKeys().subscribe((resp: BackKeys[]) => {
       this.allKeys = resp
-      for(var i = 0; i < resp.length; i++){
-        this.getAllValue(this.allKeys[i].toString())
+      for(var i = 0; i < resp.length; i++){ 
+        this.getAllValue(this.allKeys[i].toString(), i)
       }
     });
   }
 
-  getAllValue(key: String){
+  getAllValue(key: String, i: number){
       this.back.getAllValue(key).subscribe((resp: Back)=> {
-        this.value = resp;
+        this.value[i] = {
+          key: key,
+          texto: resp.texto
+        }
         console.log(this.value)
     });
   }
-
 }
