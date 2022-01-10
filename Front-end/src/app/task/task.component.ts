@@ -14,6 +14,7 @@ export class TaskComponent implements OnInit {
     key: "OK",
     texto: "OK"
   }
+  tarefa: Back = new Back();
   allKeys: BackKeys[];
   value: Back[] = [this.exemplo];
 
@@ -39,7 +40,13 @@ export class TaskComponent implements OnInit {
           key: key,
           texto: resp.texto
         }
-        console.log(this.value)
     });
+  }
+
+  postTarefa(back: Back){
+    console.log()
+    this.back.postTarefa(back).subscribe((resp: Back)=>{
+      alert("Postagem efetuada")
+    })
   }
 }

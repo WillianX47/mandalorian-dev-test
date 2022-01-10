@@ -23,4 +23,10 @@ export class BackService {
     );
   }
 
+  postTarefa(back: Back): Observable<Back>{
+    return this.http.post<Back>(
+      'http://localhost:8080/task/add', back
+    );
+  }
+
 }

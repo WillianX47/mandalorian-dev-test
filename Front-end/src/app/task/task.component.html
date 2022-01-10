@@ -1,15 +1,28 @@
-<div class="container-fluid">
-  <div class="row bg-dark">
-    <div class="col-md-12 vh-100">
-      <div *ngFor="let todos of value" class="postit4">
-        <h3>{{todos.key}}</h3>
-        <div contenteditable><p>
-            {{todos.texto}}
-        </p></div>
-    </div>
-    </div>
+<header>
+  <h1>Post-It Notes</h1>
+  <p>Page Curl Effect</p>
+</header>
+<div>
+  <ul class="box3">
+    <li class="corner"></li>
+    <li *ngFor="let item of value">
+      <span class="d-flex justify-content-center p-2">{{ item.key }}</span>
+      <p class="p-2">{{ item.texto }}</p>
+    </li>
+  </ul>
+
+
+
+  <div>
+    <input name="key" id="key" cols="30" rows="5" [(ngModel)]="tarefa.key" />
+    <hr />
+    <input
+      name="texto"
+      id="texto"
+      cols="30"
+      rows="5"
+      [(ngModel)]="tarefa.texto"
+    />
+    <button class="btn btn-dark" (click)="postTarefa(tarefa)" >Adicionar</button>
   </div>
-
 </div>
-
-
