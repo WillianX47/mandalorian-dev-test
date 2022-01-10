@@ -29,4 +29,10 @@ export class BackService {
     );
   }
 
+  delTarefa(key: String){
+    return this.http.delete<void>(
+      `http://localhost:8080/task/${key}`
+    )
+  }
+
 }

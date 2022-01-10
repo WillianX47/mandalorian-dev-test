@@ -44,9 +44,14 @@ export class TaskComponent implements OnInit {
   }
 
   postTarefa(back: Back){
-    console.log()
     this.back.postTarefa(back).subscribe((resp: Back)=>{
       alert("Postagem efetuada")
+    })
+  }
+  delTarefa(key: String){
+    this.back.delTarefa(key).subscribe(()=>{
+      this.getAllKeys()
+      alert("Postagem deletada")
     })
   }
 }

@@ -8,6 +8,7 @@
     <li *ngFor="let item of value">
       <span class="d-flex justify-content-center p-2">{{ item.key }}</span>
       <p class="p-2">{{ item.texto }}</p>
+      <button class="btn btn-dark" (click)="delTarefa(item.key)">Deletar</button>
     </li>
   </ul>
 
