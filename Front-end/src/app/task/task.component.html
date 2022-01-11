@@ -1,32 +1,35 @@
 <body class="vh-100">
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="http://fonts.googleapis.com/css?family=Crafty+Girls"
-/>
-<header class="d-flex justify-content-center align-items-center">
-  <h2>Gerenciador de tarefas Post-it</h2>
-</header>
-<div class="bg-tarefas">
-  <button class="btn btn-dark" (click)="validarTarefa(tarefa)">+</button>
-  <ul class="boxOf3">
-    <li class="postEffect">
-      <textarea
-        class="title"
-        placeholder="Adicionar titulo."
-        [(ngModel)]="tarefa.key"
-      ></textarea>
-      <textarea
-        class="texto1"
-        placeholder="Digite seu texto."
-        [(ngModel)]="tarefa.texto"
-      >
-      </textarea>
-    </li>
-    <li class="paraO*NG postEffect" *ngFor="let item of value">
-      <p class="title">{{ item.key }}</p>
-      <p class="texto1">{{ item.texto }}</p>
-    </li>
-  </ul>
-</div>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="http://fonts.googleapis.com/css?family=Crafty+Girls"
+  />
+  <header class="d-flex justify-content-center align-items-center">
+    <h2>Gerenciador de tarefas Post-it</h2>
+  </header>
+  <div class="bg-tarefas">
+    <button class="btn btn-dark" (click)="validarTarefa(tarefa)">+</button>
+    <ul class="boxOf3">
+      <li class="postEffect">
+        <textarea
+          class="title {{cor}}"
+          placeholder="Adicionar titulo."
+          (keyup)="onKeyUp($event)"
+          [(ngModel)]="tarefa.key"
+        ></textarea>
+        <textarea
+          class="texto1"
+          placeholder="Digite seu texto."
+          [(ngModel)]="tarefa.texto"
+        >
+        </textarea>
+      </li>
+      <li class="paraO*NG postEffect" *ngFor="let item of value">
+        <p class="title">{{ item.key }}</p>
+        <p class="texto1">
+          {{ item.texto }} <br />
+          <a (click)="delTarefa(item.key)">Marcar como concluída</a></p>
+      </li>
+    </ul>
+  </div>
 </body>

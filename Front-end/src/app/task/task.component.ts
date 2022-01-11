@@ -9,6 +9,7 @@ import { BackService } from '../service/back.service';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
 })
+
 export class TaskComponent implements OnInit {
   exemplo: Back = {
     key: 'ExemploDeTitulo',
@@ -17,6 +18,8 @@ export class TaskComponent implements OnInit {
   tarefa: Back = new Back();
   allKeys: BackKeys[];
   value: Back[] = [this.exemplo];
+  titulo: String = ''
+  cor: String = ''
 
   constructor(private back: BackService, private alerta: AlertasService) {}
 
@@ -25,8 +28,22 @@ export class TaskComponent implements OnInit {
     this.getAllKeys();
   }
 
+  onKeyUp(evento: KeyboardEvent){
+    const regex = /\W[+]|_/;
+    this.titulo = ((<HTMLInputElement>evento.target).value)
+    if(
+      regex.test(this.titulo.toString()) == false &&
+      this.titulo.length >= 10 &&
+      this.titulo.length <= 20
+    ){
+      this.cor = 'verde'
+    } else {
+      this.cor = 'vermelho'
+    }
+  }
+
   validarTarefa(back: Back) {
-    const regex = /\W|_/;
+    const regex = /\W[+]|_/;
     if (
       regex.test(back.key.toString()) == false &&
       back.key.length >= 10 &&
@@ -60,14 +77,14 @@ export class TaskComponent implements OnInit {
 
   postTarefa(back: Back) {
     this.alerta.msg("Tarefa criada!")
-    this.back.postTarefa(back).subscribe(() => {});
+    this.back.postTarefa(back).subscribe(() => {
+      setTimeout(function(){location.reload()}, 1500);
+    });
   }
 
   delTarefa(key: String) {
+    setTimeout(function(){location.reload()}, 1500);
     this.alerta.msg("Tarefa concluída!")
-    this.back.delTarefa(key).subscribe(() => {
-      this.getAllKeys();
-      alert('Postagem deletada');
-    });
+    this.back.delTarefa(key).subscribe(() => {});
   }
 }
