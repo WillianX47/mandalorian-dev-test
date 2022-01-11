@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Back } from '../model/Back';
 import { BackKeys } from '../model/BackKeys';
+import { AlertasService } from '../service/alertas.service';
 import { BackService } from '../service/back.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class TaskComponent implements OnInit {
   allKeys: BackKeys[];
   value: Back[] = [this.exemplo];
 
-  constructor(private back: BackService) {}
+  constructor(private back: BackService, private alerta: AlertasService) {}
 
   ngOnInit() {
     window.scroll(0, 0);
@@ -26,11 +27,15 @@ export class TaskComponent implements OnInit {
 
   validarTarefa(back: Back) {
     const regex = /\W|_/;
-    if (regex.test(back.key.toString()) == false && back.key.length >= 10 && back.key.length <= 20) {
+    if (
+      regex.test(back.key.toString()) == false &&
+      back.key.length >= 10 &&
+      back.key.length <= 20
+    ) {
       this.postTarefa(back);
     } else {
-      console.log(
-        'Titulo deve conter mais de 10 caracter e não conter caracter especial'
+      this.alerta.msg(
+        'Não é permitido entrada de caracteres especiais no título! o titulo deve ser maior que 10 e menor que 20 letras'
       );
     }
   }
@@ -54,10 +59,12 @@ export class TaskComponent implements OnInit {
   }
 
   postTarefa(back: Back) {
+    this.alerta.msg("Tarefa criada!")
     this.back.postTarefa(back).subscribe(() => {});
   }
 
   delTarefa(key: String) {
+    this.alerta.msg("Tarefa concluída!")
     this.back.delTarefa(key).subscribe(() => {
       this.getAllKeys();
       alert('Postagem deletada');
