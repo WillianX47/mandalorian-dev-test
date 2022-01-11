@@ -29,7 +29,7 @@ export class TaskComponent implements OnInit {
   }
 
   onKeyUp(evento: KeyboardEvent){
-    const regex = /\W[+]|_/;
+    const regex = /\W|_/;
     this.titulo = ((<HTMLInputElement>evento.target).value)
     if(
       regex.test(this.titulo.toString()) == false &&
@@ -43,7 +43,7 @@ export class TaskComponent implements OnInit {
   }
 
   validarTarefa(back: Back) {
-    const regex = /\W[+]|_/;
+    const regex = /\W|_/;
     if (
       regex.test(back.key.toString()) == false &&
       back.key.length >= 10 &&
