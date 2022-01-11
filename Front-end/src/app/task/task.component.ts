@@ -10,8 +10,8 @@ import { BackService } from '../service/back.service';
 })
 export class TaskComponent implements OnInit {
   exemplo: Back = {
-    key: 'OK',
-    texto: 'OK',
+    key: 'ExemploDeTitulo',
+    texto: 'Exemplo de texto',
   };
   tarefa: Back = new Back();
   allKeys: BackKeys[];
@@ -22,6 +22,17 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
     window.scroll(0, 0);
     this.getAllKeys();
+  }
+
+  validarTarefa(back: Back) {
+    const regex = /\W|_/;
+    if (regex.test(back.key.toString()) == false && back.key.length >= 10 && back.key.length <= 20) {
+      this.postTarefa(back);
+    } else {
+      console.log(
+        'Titulo deve conter mais de 10 caracter e não conter caracter especial'
+      );
+    }
   }
 
   getAllKeys() {
@@ -43,13 +54,7 @@ export class TaskComponent implements OnInit {
   }
 
   postTarefa(back: Back) {
-    const regex = /\W|_/;
-    if (regex.test(back.key.toString()) == false && back.key.length >= 10) {
-      console.log("Postagem efetuada")
-      this.back.postTarefa(back).subscribe(() => {});
-    } else {
-      console.log("O titulo não pode conter caracter especial")
-    }
+    this.back.postTarefa(back).subscribe(() => {});
   }
 
   delTarefa(key: String) {

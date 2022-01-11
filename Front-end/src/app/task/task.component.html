@@ -1,29 +1,32 @@
-<header>
-  <h1>Post-It Notes</h1>
-  <p>Page Curl Effect</p>
+<body class="vh-100">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="http://fonts.googleapis.com/css?family=Crafty+Girls"
+/>
+<header class="d-flex justify-content-center align-items-center">
+  <h2>Gerenciador de tarefas Post-it</h2>
 </header>
-<div>
-  <ul class="box3">
-    <li class="corner"></li>
-    <li *ngFor="let item of value">
-      <span class="d-flex justify-content-center p-2">{{ item.key }}</span>
-      <p class="p-2">{{ item.texto }}</p>
-      <button class="btn btn-dark" (click)="delTarefa(item.key)">Deletar</button>
+<div class="bg-tarefas">
+  <button class="btn btn-dark" (click)="validarTarefa(tarefa)">+</button>
+  <ul class="boxOf3">
+    <li class="postEffect">
+      <textarea
+        class="title"
+        placeholder="Adicionar titulo."
+        [(ngModel)]="tarefa.key"
+      ></textarea>
+      <textarea
+        class="texto1"
+        placeholder="Digite seu texto."
+        [(ngModel)]="tarefa.texto"
+      >
+      </textarea>
+    </li>
+    <li class="paraO*NG postEffect" *ngFor="let item of value">
+      <p class="title">{{ item.key }}</p>
+      <p class="texto1">{{ item.texto }}</p>
     </li>
   </ul>
-
-
-
-  <div>
-    <input name="key" id="key" cols="30" rows="5" [(ngModel)]="tarefa.key" />
-    <hr />
-    <input
-      name="texto"
-      id="texto"
-      cols="30"
-      rows="5"
-      [(ngModel)]="tarefa.texto"
-    />
-    <button class="btn btn-dark" (click)="postTarefa(tarefa)" >Adicionar</button>
-  </div>
 </div>
+</body>
